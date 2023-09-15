@@ -2,9 +2,17 @@
   "name": "tp_i.v10",
   "version": "1.0.0",
   "description": "Trabajo Practico Integrador WEB 2 (2023)",
-  "main": "app.js",
+  "main": "tpi.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "SET NODE_ENV=dev&& nodemon tpi.js",
+    "start:prod": "SET NODE_ENV=prod&& nodemon tpi.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
   },
   "repository": {
     "type": "git",
