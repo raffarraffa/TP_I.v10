@@ -1,0 +1,23 @@
+{
+  "name": "tp_i.v10",
+  "version": "1.0.0",
+  "description": "Trabajo Practico Integrador WEB 2 (2023)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raffarraffa/tp_i.v10.git"
+  },
+  "keywords": [
+    "NODE",
+    "web2"
+  ],
+  "author": "Rafa Lopez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raffarraffa/tp_i.v10/issues"
+  },
+  "homepage": "https://github.com/raffarraffa/tp_i.v10#readme"
+}
