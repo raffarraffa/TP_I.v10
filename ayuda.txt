@@ -1,0 +1,29 @@
+Modelos (models/):
+En esta carpeta, defines tus modelos de datos y te conectas a la base de datos. 
+Aquí es donde creas las sentencias SQL o utilizas un ORM (Object-Relational Mapping) para interactuar con la base de datos.
+Los modelos son responsables de representar la estructura y la lógica de datos de tu aplicación.
+La conexión a la base de datos y las sentencias SQL
+
+Controladores (controllers/):
+Los controladores son responsables de procesar las solicitudes HTTP,
+interactuar con los modelos para recuperar o actualizar datos y enviar respuestas al cliente.
+Aquí es donde procesas los datos recibidos, realizas operaciones lógicas y luego envías una respuesta.
+
+Rutas (routes/):
+En esta carpeta, defines las rutas de tu aplicación. 
+Las rutas especifican qué controlador se debe invocar cuando se recibe una solicitud HTTP específica.
+Puedes configurar las rutas en un archivo de enrutamiento centralizado, como "routes.js," 
+y luego importarlas en tu archivo principal (por ejemplo, "app.js") para que se apliquen a la aplicación.
+
+Vistas (views/): 
+Si tu aplicación utiliza vistas HTML o plantillas para renderizar contenido,
+puedes organizarlas en esta carpeta. Sin embargo, en una arquitectura MVC típica, 
+las vistas no siempre son necesarias, ya que puedes estar construyendo una API RESTful en lugar de una aplicación web tradicional.
+
+Archivos estáticos (public/): 
+Si tienes archivos estáticos, como imágenes, CSS o archivos JavaScript,
+puedes servirlos desde esta carpeta.
+Express, por ejemplo, proporciona middleware para servir archivos estáticos.
+
+Utilidades (utils/): 
+Aquí puedes colocar utilidades o funciones comunes que se utilizan en varios lugares de tu aplicación.

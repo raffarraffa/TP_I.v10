@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/ico" href="/assets/favicon.ico" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/style.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style_2.css" />
+    <script type="module" defer src="/assets/js/main.js"></script>
+    <title>WEB 2 TP I</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        setTimeout(() => {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                disableForReducedMotion: true
+            });
+        }, 500);
+    </script>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="card" id="inicio">
+            <h1>TRIVIA WEB II</h1>
+            <h3 id="pregunta"> Pregunta nº <span id="nro_preg">&nbsp;&nbsp;</span></h3>
+            <div class="card-body" id="pregunta"></div>
+            <div class="card-resp" id="respuesta"></div>
+            <div class="card-footer">
+                <p>Tiempo restante</p>
+                <p id="time">0</p>
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+</body>
+
+</html>
