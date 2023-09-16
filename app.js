@@ -1,17 +1,23 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import game from './controllers/game.js';
 import cors from 'cors';
-import debug from "../utils/utiles.js";
+import debug from "./utils/utiles.js";
 // importacion rutas
-import userRouter from '../routes/user_route.js';
-import gameRouter from '../routes/game_route.js';
+import userRouter from './routes/user_route.js';
+import gameRouter from './routes/game_route.js';
 class App {
     constructor() {
         // Define el entorno aquí o pásalo como argumento
         this.entorno = process.env.NODE_ENV || 'dev';
         this.verificaEntorno();
         this.app = express();
+        // game
+        this.urlGame = process.env.URL_GAME;
+        this.paises = new game(this.urlGame);
+        //   this.gameDataPaises = await this.paises.obtenerPaises();
+        // persistencia
         this.databaseUrl = process.env.DATABASE_URL;
         this.databaseUser = process.env.DATABASE_USER;
         this.databasePort = process.env.DATABASE_PORT;
@@ -22,7 +28,7 @@ class App {
         this.port = process.env.APP_PORT || 3000;
         this.configureMiddleware();
         this.configureRoutes();
-        this.start();
+        //  this.start();
     }
     verificaEntorno() {
         this.entorno === 'dev' ? dotenv.config({ path: './config.dev.env' }) : dotenv.config({ path: './config.prod.env' });
@@ -43,12 +49,39 @@ class App {
             res.status(404).send('Error 404 - Página no encontrada');
         });
     }
-    start() {
-        // Inicia el servidor
-        this.app.listen(this.port, () => {
-            console.log(`Servidor escuchando en el puerto ${this.port}`);
-        });
-    }
+    async obtenerPaises() {
 
+    }
+    async start() {
+        try {
+            // Realiza la operación asincrónica de obtener países
+            this.paises = new game(this.urlGame);
+            this.gameDataPaises = await this.paises.obtenerPaises();
+            debug(this.paises.paises);
+            this.app.listen(this.port, () => {
+                console.log(`Servidor escuchando en el puerto ${this.port}`);
+            });
+
+        } catch (error) {
+            // Maneja errores si ocurren durante la inicialización
+            console.error('Error en la inicialización:', error);
+        }
+
+
+    }
 }
 export default App;
+/*
+try {
+    // Realiza la operación asincrónica de obtener países
+    this.paises = new game(this.urlGame);
+    this.gameDataPaises = await this.paises.obtenerPaises();
+       this.app.listen(this.port, () => {
+            console.log(`Servidor escuchando en el puerto ${this.port}`);
+        });
+    }    
+} catch (error) {
+    // Maneja errores si ocurren durante la inicialización
+    console.error('Error en la inicialización:', error);
+}
+*/
