@@ -7,6 +7,7 @@ import debug from "./utils/utiles.js";
 // importacion rutas
 import userRouter from './routes/user_route.js';
 import gameRouter from './routes/game_route.js';
+
 class App {
     constructor() {
         // Define el entorno aquí o pásalo como argumento
@@ -49,39 +50,29 @@ class App {
             res.status(404).send('Error 404 - Página no encontrada');
         });
     }
-    async obtenerPaises() {
-
-    }
     async start() {
         try {
             // Realiza la operación asincrónica de obtener países
             this.paises = new game(this.urlGame);
             this.gameDataPaises = await this.paises.obtenerPaises();
-            debug(this.paises.paises);
+
+            this.gameDataKeyPaises = this.paises.shuffle(await this.paises.obtenerPaisesKeyAnon(this.gameDataPaises)); // obtiene los 
+            debug(this.gameDataKeyPaises);
+            this.gameDataKeyPaises = this.paises.shuffle(await this.paises.obtenerPaisesKeyAnon(this.gameDataPaises)); // obtiene los 
+
+            //            debug(await this.gameDataPaises);
+            //           this.gameDataPaisesKey = this.gameDataPaises.map((_, i) => i);
+            //  this.gameDataPaisesKey = await this.paises.obtenerPaisesKeyAnon(this.gameDataPaises);
+            //      debug(this.paises.datosPaises);
+            debug(this.gameDataKeyPaises);
+
             this.app.listen(this.port, () => {
                 console.log(`Servidor escuchando en el puerto ${this.port}`);
             });
-
         } catch (error) {
-            // Maneja errores si ocurren durante la inicialización
+            // Maneja errores  durante la inicialización
             console.error('Error en la inicialización:', error);
         }
-
-
     }
 }
 export default App;
-/*
-try {
-    // Realiza la operación asincrónica de obtener países
-    this.paises = new game(this.urlGame);
-    this.gameDataPaises = await this.paises.obtenerPaises();
-       this.app.listen(this.port, () => {
-            console.log(`Servidor escuchando en el puerto ${this.port}`);
-        });
-    }    
-} catch (error) {
-    // Maneja errores si ocurren durante la inicialización
-    console.error('Error en la inicialización:', error);
-}
-*/

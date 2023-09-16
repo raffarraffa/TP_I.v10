@@ -3,7 +3,8 @@ class Game {
     constructor(urlGame) {
         //   this.paises ;
         this.url = urlGame;
-        console.log(`game importado ${urlGame}`);
+        this.datosPaises = this.obtenerPaises();
+        this.keyPaises = this.shuffle(this.obtenerPaisesKeyAnon(this.datosPaises));
     }
     async obtenerPaises() {
         const controlTiempo = new AbortController();
@@ -23,9 +24,9 @@ class Game {
                 return response.json();
             })
             .then(data => {
-                this.paises = this.paisesFiltraMap(data);
+                //                this.paises = this.paisesFiltraMap(data);
                 //   console.log(this.paisesFiltraMap(data));
-                //  return data;
+                return this.paisesFiltraMap(data);
                 //                    this.paises = paisesFiltra(data);
                 //                    return paises
             })
@@ -86,6 +87,58 @@ class Game {
             }
         });
         return resultados;
+    }
+    async obtenerPaisesKeyFor(paises) {
+        const keyPaises = [];
+        for (let i = 0; i < paises.length; i++) {
+            keyPaises.push(i);
+        }
+        return keyPaises;
+    }
+    async obtenerPaisesKeyForEach(paises) {
+        const keyPaises = [];
+        let i = 0;
+        paises.forEach(() => {
+            keyPaises.push(i++);
+        });
+        return keyPaises;
+    }
+    async obtenerPaisesKeyMap(paises) {
+        let i = 0;
+        return paises.map(() => i++);
+    }
+    // async obtenerPaisesKeyAnon(paises) {
+    //     const key = paises.map((_, i) => i);
+    //     return key;
+
+    // }
+    // async obtenerPaisesKeyAnon(paises) {
+    //     const keys = Object.keys(paises);
+    //     const keyArray = keys.map((_, index) => ({ index }));
+    //     return keyArray;
+    // }
+
+    async obtenerPaisesKeyAnon(paises) {
+        console.log(typeof paises === 'object');
+        if (typeof paises === 'object') {
+            const keys = Object.keys(paises);
+            const keyArray = keys.map((_, pregunta) => ({ pregunta }));
+            console.log(keyArray.length);
+            //keyArray = this.shuffle(keyArray);
+
+            return keyArray;
+        } else if (typeof paises === 'array' && Array.isArray(paises)) {
+            return paises.map((_, i) => i);
+        } else {
+            return 'caca';
+        }
+    }
+    shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
 }
 
